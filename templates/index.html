@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+
+{% block maincontent %}
+
+
+    {% if user %}
+        <a class="btn btn-lg btn-success" href="/logout" role="button">Logout</a>
+    {% else %}
+        <a class="btn btn-lg btn-primary" href="{{ login_url|safe }}" role="button">Login</a>
+    {% endif %}
+
+
+{% endblock %}

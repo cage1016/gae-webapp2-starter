@@ -1,0 +1,168 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    background-color: #f5f5f5;
+}
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+body > .container {
+    padding: 60px 15px 0;
+}
+
+.container .text-muted {
+    margin: 20px 0;
+}
+
+.footer > .container {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+code {
+    font-size: 80%;
+}
+
+/*
+reactable
+*/
+.reactable-page-button {
+    margin-left: 5px;
+    margin-right: 2px;
+    margin-bottom: 6px;
+    padding: 3px;
+    width: 30px;
+    float: left;
+    cursor: pointer;
+    color: #000;
+    border: 1px solid #AAA;
+    background-color: #EEE;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.reactable-page-button:hover {
+    text-decoration: none;
+    color: #333;
+    background-color: #DDD;
+}
+
+.reactable-current-page {
+    background-color: #DDD;
+    cursor: default;
+}
+
+#demo-table th {
+    cursor: pointer;
+}
+
+#demo-table th.reactable-header-sort-desc, #demo-table th.reactable-header-sort-asc {
+    /*background-color: #474747;*/
+}
+
+#demo-table th.reactable-header-sort-desc:after {
+    content: '\25B2';
+    font-size: 10px;
+    padding-left: 10px;
+    padding-bottom: 5px;
+}
+
+#demo-table th.reactable-header-sort-asc:after {
+    content: '\25BC';
+    font-size: 10px;
+    padding-left: 10px;
+    padding-bottom: 5px;
+}
+
+tr.reactable-filterer {
+    width: 100%;
+}
+
+tr.reactable-filterer td {
+    width: 100%;
+}
+
+.reactable-filter-input {
+    width: 95%;
+    margin-left: 10px;
+    margin-top: 7px;
+    margin-bottom: 7px;
+    margin-right: 20px;
+    padding: 5px;
+}
+
+/*tdoc css*/
+.bs-callout-info {
+    border-left-color: #d0e3f0;
+}
+
+.bs-callout {
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid #eee;
+    border-left-width: 5px;
+    border-radius: 3px;
+}
+
+@media (min-width: 768px) {
+    #report-form .input-container {
+        margin-left: 4px;
+    }
+}
+
+/*drop zone*/
+#drop_zone {
+    border: 2px dashed #bbb;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    padding: 25px;
+    text-align: center;
+    font: 20pt bold 'Helvetica';
+    color: #bbb;
+}
+
+#drop_zone:hover {
+    color: #aaa;
+    cursor: pointer;
+}
+
+.add-schedule-capacity {
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+
+
+.spinner-h1{
+    display: none;
+}
+#list-ip-warmup-schedule > div{
+    padding-top: 10px;
+}
+
+#list-ip-warmup-schedule div.well{
+    margin-bottom: 0px;
+}
+
+.controller-panel > .form-inline .form-group,
+.controller-panel > .form-inline input,
+.controller-panel > .form-inline button{
+    margin-left: 5px;
+}

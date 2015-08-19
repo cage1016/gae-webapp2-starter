@@ -1,0 +1,22 @@
+*~
+*.pyc
+.idea
+.DS_Store
+*.p12
+*.pem
+*.der
+
+bower_components
+node_modules
+lib
+public
+
+#library source
+*.zip
+
+#client_secret
+application/client_secret.json
+
+#recipient txt
+tasks/*.csv
+tasks/debug

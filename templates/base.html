@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  {% include '_head.html' %}
+
+</head>
+<body>
+
+
+<!-- Fixed masthead -->
+<nav class="navbar navbar-masthead navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+              aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">GAE Webapp2 starter</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      {% if user %}
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user.email }} <span
+              class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            {% if user.is_admin %}
+            {% endif %}
+            <li><a href="/logout">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+      {% endif %}
+    </div>
+    <!--/.nav-collapse -->
+  </div>
+</nav>
+
+
+<div class="container">
+
+  {% block maincontent %}{% endblock %}
+
+</div>
+<!-- /container -->
+
+
+<footer class="footer">
+  <div class="container">
+    <p class="text-muted">Place sticky footer content here.</p>
+  </div>
+</footer>
+
+
+<!-- inject:js -->
+<script src="/public/javascript/vendors.js"></script>
+<!-- endinject -->
+
+<!--<script src="/public/javascript/bundle.js"></script>-->
+
+{% block foot_scripts %}{% endblock %}
+</body>
+</html>
