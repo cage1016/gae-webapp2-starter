@@ -86,37 +86,40 @@ $ gulp
 ### prepare _client_secret.json_ for Sign in
 
 Create client id for web application
+
 1. Click **APIs & Auth** > **credential**.
 2. Click **Click new Client ID**.
 3. Choose **Web application**.
-- modify **Authorized JavaScript origins**.
+4. modify **Authorized JavaScript origins**.
 
   ```sh
   http://localhost:8080
   ```
 
-- modify **Authorized redirect URIs**.
+5. modify **Authorized redirect URIs**.
 
   ```sh
   http://localhost:8080/widget
   ```
 
-4. Click **Create Client ID**
-5. Download credential JSON file
+6. Click **Create Client ID**
+7. Download credential JSON file
 
 Create Service Account
+
 1. Click **APIs & Auth** > **credential**.
 2. Click **Click new Client ID**.
 3. Choose **Service Account**.
 4. Key type : **P12 Key**
 5. Click **Create Client ID**
-- **P12.Key** file will be downloaded. You have to convert `p12` to `pem` cause PKCS12 format is not supported by the PyCrypto library.
+**P12.Key** file will be downloaded. You have to convert `p12` to `pem` cause PKCS12 format is not supported by the PyCrypto library.
 
   ```sh
   (openssl pkcs12 -in xxxxx.p12 -nodes -nocerts > privatekey.pem)
   ```
 
 Create Public API access
+
 1. Click **APIs & Auth** > **credential**.
 2. Click **Click new Key** in **Public API access** section
 3. Click **Browser key**
