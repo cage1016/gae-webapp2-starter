@@ -130,7 +130,7 @@ Create Public API access
 
 ### modify settings
 
-_application/_settings.py_
+_application/settings.py_
 
 replace `<web-client-id>`, `<developer=key>`, `<service-account-email>` your create earlier
 
