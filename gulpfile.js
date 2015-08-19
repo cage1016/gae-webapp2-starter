@@ -22,7 +22,7 @@ var livereload = require('gulp-livereload');
 var streamify = require('gulp-streamify');
 var notify = require('gulp-notify');
 var glob = require('glob');
-var react = require("gulp-react");
+var react = require('gulp-react');
 
 
 // External dependencies you do not want to rebundle while developing,
@@ -30,30 +30,32 @@ var react = require("gulp-react");
 var dependencies = [];
 
 // Bower External dependencies
+// map module names with global objects
 var bowerDependencies = {
-  // map module names with global objects
-  'jquery': 'window.$',
-  'bootstrap': 'window.$',
-  'moment': 'window.moment'
+  jquery: 'window.$',
+  bootstrap: 'window.$',
+  moment: 'window.moment',
 };
 
-var browserifyTask = function (options) {
+var browserifyTask = function(options) {
 
   // Our app bundler
   var appBundler = browserify({
     entries: [options.src], // Only need initial file, browserify finds the rest
     transform: [reactify], // We want to convert JSX to normal javascript
     debug: options.development, // Gives us sourcemapping
-    cache: {}, packageCache: {}, fullPaths: options.development // Requirement of watchify
+    cache: {},
+    packageCache: {},
+    fullPaths: options.development, // Requirement of watchify
   }).transform(literalify.configure(bowerDependencies));
 
   // We set our dependencies as externals on our app bundler when developing
-  (options.development ? dependencies : []).forEach(function (dep) {
+  (options.development ? dependencies : []).forEach(function(dep) {
     appBundler.external(dep);
   });
 
   // The rebundle process
-  var rebundle = function () {
+  var rebundle = function() {
     var start = Date.now();
     console.log('Building APP bundle');
     appBundler.bundle()
@@ -62,7 +64,7 @@ var browserifyTask = function (options) {
       .pipe(gulpif(!options.development, streamify(uglify())))
       .pipe(gulp.dest(options.dest))
       .pipe(gulpif(options.development, livereload()))
-      .pipe(notify(function () {
+      .pipe(notify(function() {
         console.log('APP bundle built in ' + (Date.now() - start) + 'ms');
       }));
   };
@@ -86,14 +88,16 @@ var browserifyTask = function (options) {
       entries: testFiles,
       debug: true, // Gives us sourcemapping
       transform: [reactify],
-      cache: {}, packageCache: {}, fullPaths: true // Requirement of watchify
+      cache: {},
+      packageCache: {},
+      fullPaths: true, // Requirement of watchify
     });
 
-    dependencies.forEach(function (dep) {
+    dependencies.forEach(function(dep) {
       testBundler.external(dep);
     });
 
-    var rebundleTests = function () {
+    var rebundleTests = function() {
       var start = Date.now();
       console.log('Building TEST bundle');
       testBundler.bundle()
@@ -101,7 +105,7 @@ var browserifyTask = function (options) {
         .pipe(source('specs.js'))
         .pipe(gulp.dest(options.dest))
         .pipe(livereload())
-        .pipe(notify(function () {
+        .pipe(notify(function() {
           console.log('TEST bundle built in ' + (Date.now() - start) + 'ms');
         }));
     };
@@ -123,22 +127,22 @@ var browserifyTask = function (options) {
       './bower_components/jquery/dist/jquery.js',
       './bower_components/jquery-tmpl/jquery.tmpl.js',
       './bower_components/todc-bootstrap/dist/js/bootstrap.js',
-      './bower_components/moment/min/moment.min.js'
+      './bower_components/moment/min/moment.min.js',
     ])
       .pipe(concat('vendors.js'))
       .pipe(uglify())
       .pipe(sourcemaps.write('./'))
       .pipe(gulp.dest('./public/javascript'))
-      .pipe(notify(function () {
+      .pipe(notify(function() {
         console.log('VENDORS bundle built in ' + (Date.now() - start) + 'ms');
       }));
   }
 
 };
 
-var cssTask = function (options) {
+var cssTask = function(options) {
   if (options.development) {
-    var run = function () {
+    var run = function() {
       console.log(arguments);
       var start = new Date();
       console.log('Building CSS bundle');
@@ -146,7 +150,7 @@ var cssTask = function (options) {
         .pipe(concat(options.bundleName || 'main.css'))
         .pipe(gulp.dest(options.dest))
         .pipe(gulpif(options.development, livereload()))
-        .pipe(notify(function () {
+        .pipe(notify(function() {
           console.log('CSS bundle built in ' + (Date.now() - start) + 'ms');
         }));
     };
@@ -160,8 +164,8 @@ var cssTask = function (options) {
   }
 };
 
-var htmlTask = function (options) {
-  var run = function () {
+var htmlTask = function(options) {
+  var run = function() {
     gulp.src(options.src)
       .pipe(livereload());
   };
@@ -169,22 +173,22 @@ var htmlTask = function (options) {
 };
 
 
-gulp.task('images', function () {
+gulp.task('images', function() {
   gulp.src('./assets/images/**/*')
     .pipe(gulp.dest('./public/images'));
 });
 
 // Fonts
-gulp.task('fonts', function () {
+gulp.task('fonts', function() {
   return gulp.src([
-    './bower_components/todc-bootstrap/dist/fonts/**/*.*'])
+    './bower_components/todc-bootstrap/dist/fonts/**/*.*',])
     .pipe(gulp.dest('./public/fonts/'));
 });
 
-gulp.task('lint', function () {
+gulp.task('lint', function() {
   return gulp.src([
     './gulpfile.js',
-    './assets/javascript/**/*.js'
+    './assets/javascript/**/*.js',
   ])
     .pipe(react())
     .pipe(jshint())
@@ -193,11 +197,11 @@ gulp.task('lint', function () {
 });
 
 
-var doRun = function (development) {
+var doRun = function(development) {
   browserifyTask({
     development: development,
     src: './assets/javascript/index.js',
-    dest: './public/javascript/'
+    dest: './public/javascript/',
   });
 
   cssTask({
@@ -206,28 +210,19 @@ var doRun = function (development) {
       './bower_components/todc-bootstrap/dist/css/bootstrap.css',
       './bower_components/todc-bootstrap/dist/css/todc-bootstrap.css',
       './assets/stylesheet/custom.css',
-      './assets/stylesheet/spinner.css'
+      './assets/stylesheet/spinner.css',
     ],
     dest: './public/css',
-    bundleName: 'main.css'
+    bundleName: 'main.css',
   });
 
-  //cssTask({
-  //  development: development,
-  //  src: [
-  //    './assets/stylesheet/style.css'
-  //  ],
-  //  dest: './public/css',
-  //  bundleName: 'welcome.css'
-  //});
-
   htmlTask({
-    src: './templates/**/*'
+    src: './templates/**/*',
   });
 };
 
 // Starts our development workflow
-gulp.task('default', ['lint', 'fonts', 'images'], function () {
+gulp.task('default', ['lint', 'fonts', 'images'], function() {
   var development = true;
   doRun(development);
 });

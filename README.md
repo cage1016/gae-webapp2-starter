@@ -9,6 +9,7 @@ This is simple webapp2 template on Google App Engine
   - OAuth2 loging (Google)
 - Bootstrap theme (todc)
 - Gulp supported
+- browserify
 
 **file structure**
 
@@ -31,7 +32,8 @@ This is simple webapp2 template on Google App Engine
 │   ├── settings.py                      # application settings. ex: CLIENT_SECRETS, WEB_CLIENT_ID .etc
 │   └── utils.py                         # utils functions
 ├── assets                               # assets
-│   ├── javascript
+│   ├── javascript
+│   │   └── index.js
 │   └── stylesheet
 │       ├── custom.css
 │       ├── spinner.css
@@ -49,9 +51,10 @@ This is simple webapp2 template on Google App Engine
 │   │   ├── glyphicons-halflings-regular.ttf
 │   │   ├── glyphicons-halflings-regular.woff
 │   │   └── glyphicons-halflings-regular.woff2
-│   └── javascript
-│       ├── specs.js
-│       └── vendors.js
+│   └── javascript
+│       ├── bundle.js
+│       ├── specs.js
+│       └── vendors.js
 ├── requirements.txt                     # pip requirements install list
 └── templates                            # gae templates
     ├── _head.html
