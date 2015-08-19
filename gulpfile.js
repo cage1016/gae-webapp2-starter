@@ -194,11 +194,11 @@ gulp.task('lint', function () {
 
 
 var doRun = function (development) {
-  //browserifyTask({
-  //  development: development,
-  //  src: './assets/javascript/index.js',
-  //  dest: './public/javascript/'
-  //});
+  browserifyTask({
+    development: development,
+    src: './assets/javascript/index.js',
+    dest: './public/javascript/'
+  });
 
   cssTask({
     development: development,
